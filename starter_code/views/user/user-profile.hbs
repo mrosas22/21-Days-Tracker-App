@@ -1,0 +1,11 @@
+
+{{#if user}}
+  <div>
+    <h1>Welcome to {{title}}<span style="color: red;"> {{ user.fullName}}</span></h1>  
+    <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="You rock."><br>
+    <a href="/">Index</a><br>
+  </div>
+{{/if}}
+{{#if user.plan.isMember}}
+  <a href="/fitness/one">Fitness Plan</a><br>
+{{/if}}

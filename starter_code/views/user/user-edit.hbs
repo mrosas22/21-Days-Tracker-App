@@ -1,0 +1,15 @@
+<h1>Edit user</h1>
+<form id="" action="/user/{{user._id}}/edit" method="POST">
+  <label for="fullName">Full Name:</label><br>
+  <input type="text" name="fullName" value="{{user.fullName}}">
+  <label for="email">E-mail:</label><br>
+  <input type="text" name="email" value="{{user.email}}">
+  <label for="memberPlan">Plans</label>
+  <select name="plan" id="memberPlan">
+    {{#each plans}}
+      <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+  <button type="submit">SAVE</button> 
+  <a href="/user/manage">Return</a>
+</form>

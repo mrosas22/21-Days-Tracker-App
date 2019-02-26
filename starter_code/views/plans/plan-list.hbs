@@ -1,0 +1,22 @@
+<h1>Plans available at Body Wellness Treatments Center</h1>
+<div class="rooms-wrapper">
+  {{#each plans}}
+    <div class="room-item">
+      <h3><a href="/plans/{{this._id}}">  {{this.name}} </a> </h3>
+      <img src="{{this.imagePlan}}" alt="Plan Image" width="300">
+      <h4><b>Description:</b></h4>
+      <p>{{this.description}}</p>
+       {{!-- Edit Route --}}
+      <form action="/plans/{{this._id}}/update">
+        <button type="submit">EDIT</button><br>
+      </form>
+       {{!-- Delete Route --}}
+      <form action="/plans/{{this._id}}/delete" method="POST">
+        <button type="submit">DELETE</button><br>
+      </form>
+    </div><br>
+  {{else}}
+    <p>There are no plans available yet! :(</p>
+  {{/each}}
+</div>
+<a href="/user/admin">Return</a>

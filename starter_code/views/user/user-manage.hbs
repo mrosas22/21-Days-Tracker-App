@@ -1,0 +1,21 @@
+<h1>List of users</h1>
+<div class="users-wrapper">
+  {{#each users}}
+    <ul>
+        <li class="users-item">
+            <a href="/user/{{this._id}}">  {{this.fullName}} </a>
+            <p><b>Role: </b> {{this.role}}</p>
+            {{!-- Edit Route --}}
+            <form action="/user/{{this._id}}/edit">
+                <button type="submit">EDIT</button><br>
+            </form>
+            {{!-- Delete Route --}}
+            <form action="/user/{{this._id}}/delete" method="POST">
+                <button type="submit">DELETE</button><br>
+            </form>
+        </li><br>
+    </ul>
+    {{else}}
+        <p>There are no users available!</p>
+  {{/each}}
+</div>

@@ -1,0 +1,428 @@
+
+@font-face {
+  font-family: ars-maquette-web;
+  src: url('//apps.ign.com/video-player/fonts/ars700normal.woff') format('woff');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: ars-maquette-web;
+  src: url('//apps.ign.com/video-player/fonts/ars900normal.woff') format('woff');
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: ars-maquette-web;
+  src: url('//apps.ign.com/video-player/fonts/ars700italic.woff') format('woff');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: ff-din-round-web-pro;
+  src: url('//apps.ign.com/video-player/fonts/ffdin700normal.woff') format('woff');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: ign-player-icons;
+  src: url('//apps.ign.com/video-player/fonts/v61-player-icons.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+.outer-container .vjs-text-track-display,
+.outer-container .vjs-text-track-display > div {
+  bottom: 0 !important;
+  vertical-align: bottom;
+  display: flex;
+  align-items: flex-end;
+  margin: 0 !important;
+}
+
+.outer-container .video-js > *:not(.vjs-text-track-display) {
+  display: none;
+}
+
+.outer-container .user-activity-tracker .vjs-text-track-display > div > div {
+  transition: transform 0.4s ease;
+}
+
+.outer-container .user-activity-tracker.user-active .vjs-text-track-display > div > div {
+  transform: translateY(-4em);
+  transition: transform 0.3s ease;
+}
+
+.outer-container .vjs-text-track-display > div > div {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 auto 20px auto !important;
+  font-size: 1.25em !important;
+  text-align: left !important;
+  transition: margin 0.2s ease;
+}
+
+.outer-container .vjs-text-track-display > div > div > div:first-line {
+  z-index: auto;
+}
+
+.outer-container .vjs-text-track-display > div > div > div {
+  position: relative !important;
+  display: inline !important;
+  padding: 0.4em 0.9em 0.6em 0.8em !important;
+  margin: 0 auto !important;
+  background-color: #000 !important;
+  border-radius: 0.25em;
+  opacity: 0.9;
+  font-family: ars-maquette-web, sans-serif !important;
+  line-height: 1.8em !important;
+  font-weight: 100;
+  text-align: left !important;
+  -webkit-box-decoration-break: clone;
+}
+
+.outer-container.small-player .vjs-text-track-display > div > div > div {
+  font-size: 0.75em !important;
+}
+
+.outer-container.mini-player .vjs-text-track-display > div > div > div {
+  font-size: 0.54em !important;
+}
+
+@-webkit-keyframes countdown {
+  from {
+    stroke-dashoffset: 11em;
+  }
+  to {
+    stroke-dashoffset: 0em;
+  }
+}
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 11em;
+  }
+  to {
+    stroke-dashoffset: 0em;
+  }
+}
+
+@-webkit-keyframes loading-loop {
+  0%, 60%, 100% {
+      background-color: rgba(130, 130, 130, 0.3);
+  }
+  30% {
+  background-color: currentColor;
+  }
+}
+@keyframes loading-loop {
+  0%, 60%, 100% {
+      background-color: rgba(130, 130, 130, 0.3);
+  }
+  30% {
+      background-color: currentColor;
+  }
+}
+
+@keyframes live-blink {
+  0%, 100% {
+      background-color: transparent;
+  }
+  25%, 75% {
+      background-color: #fff;
+  }
+}
+@-webkit-keyframes live-blink {
+  0%, 100% {
+      background-color: transparent;
+  }
+  25%, 75% {
+      background-color: #fff;
+  }
+}
+@keyframes first-ani {
+  0% {
+    height:0.25em;
+  }
+  33% {
+    height:0.75em;
+  }
+  66% {
+    height:0.5em;
+  }
+  100% {
+    height:0.75em;
+  }
+}
+
+@keyframes second-ani {
+  from {
+    height:0.38em;
+  }
+  to {
+    height:0.88em;
+  }
+}
+@keyframes third-ani {
+  from {
+    height:5px;
+  }
+  to {
+    height:11px;
+  }
+}
+
+.fader-enter {
+  opacity: 0.01;
+}
+
+.fader-enter.fader-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease;
+}
+
+.fader-leave {
+  opacity: 1;
+}
+
+.fader-leave.fader-leave-active {
+  opacity: 0.01;
+  transition: opacity 250ms ease;
+}
+
+.tooltip-enter {
+  opacity: 0.01;
+}
+
+.tooltip-enter.tooltip-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in 200ms;
+}
+
+.tooltip-leave {
+  opacity: 1;
+}
+
+.tooltip-leave.tooltip-leave-active {
+  opacity: 0.01;
+  transition: opacity 10ms ease-in;
+}
+
+.stickerCollectionDrawer-enter {
+  max-height: 0%;
+  opacity: 0;
+}
+
+.stickerCollectionDrawer-enter.stickerCollectionDrawer-enter-active {
+  max-height: 100%;
+  opacity: 1;
+  transition: all 300ms ease;
+}
+
+.stickerCollectionDrawer-leave {
+  max-height: 100%;
+  opacity: 1;
+}
+
+.stickerCollectionDrawer-leave.stickerCollectionDrawer-leave-active {
+  max-height: 0%;
+  opacity: 0;
+  transition: all 300ms ease;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.clips-btyb:before {
+  position: absolute;
+  top: 1px;
+  left: 0px;
+  content: 'Brought to you by';
+  display: inline-block;
+  width: 75px;
+  color: #fff;
+  font-family: ff-din-round-web-pro,sans-serif;
+  font-size: 13px;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  white-space: pre-wrap;
+}
+
+@keyframes share-flash {
+    0% {
+        background-color: #3b3b3b;
+    }
+    50% {
+        background-color: #fff;
+    }
+    100% {
+        background-color: #3b3b3b;
+    }
+}
+
+@keyframes sticker-display {
+    0% {
+        transform: scale(1.0);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    60% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes sticker-bounce {
+    0% {
+        transform: scale(1.0);
+    }
+    50% {
+      transform: scale(1.05)
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+@keyframes hide-sticker-message {
+    0% {
+        transform: translate(-100%,0);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes show-sticker-message {
+    0% {
+        transform: translate(45%,0);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes show-sticker-open {
+    0% {
+        transform: rotate(45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes show-sticker-close {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes share-loop-in {
+    0% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    50% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    100% {
+        opacity: 0.85;
+        bottom: 94px;
+    }
+}
+@keyframes share-loop-in-mini {
+    0% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    50% {
+        opacity: 0;
+        bottom: 0px;
+    }
+    100% {
+        opacity: 0.85;
+        bottom: 52px;
+    }
+}
+@keyframes share-loop-flash {
+    0% {
+        background-color: #3b3b3b;
+    }
+    50% {
+        background-color: #f7f7f7;
+    }
+    100% {
+        background-color: #3b3b3b;
+    }
+}
+@keyframes loop-header-in {
+    0% {
+        opacity: 0;
+        top: -43px;
+    }
+    50% {
+        opacity: 0;
+        top: -43px;
+    }
+    100% {
+        opacity: 1;
+        top: 0px;
+    }
+}
+@keyframes right-loop-slider {
+    0% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+@keyframes loop-puck {
+    0% {
+        opacity: 100;
+    }
+    90% {
+        opacity: 100;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes chat-wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+    5% {
+        transform: rotate(-20deg);
+    }
+    10% {
+        transform: rotate(20deg);
+    }
+    15% {
+        transform: rotate(-20deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

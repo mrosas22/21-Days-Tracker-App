@@ -1,0 +1,12 @@
+<h1>Update <b>Plan</b></h1>
+<form action="/plans/{{plan._id}}/update" method="post" enctype="multipart/form-data">
+	<label for="">Name:</label>
+	<input type="text" name="name" value="{{plan.name}}">
+    <label for="">Description:</label>
+	<input type="text" name="description" value="{{plan.description}}">
+	{{!-- Add cover image for plan--}}
+	<label>Image</label>
+    <input type="file" name="imagePlan">
+	<button type="submit">UPDATE</button>
+</form>
+<a href="/plans">Return</a>
