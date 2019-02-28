@@ -6,6 +6,6 @@
     <a href="/">Index</a><br>
   </div>
 {{/if}}
-{{#if user.plan.isMember}}
-  <a href="/fitness/one">Fitness Plan</a><br>
-{{/if}}
+{{#each user.plan}}
+  <a href="/{{this.name}}/{{this._id}}">{{this.name}}</a><br>
+{{/each}}

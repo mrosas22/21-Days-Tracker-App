@@ -46,6 +46,9 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+//create a partial folder inside view to store our partials
+hbs.registerPartials(__dirname + '/views/partials');
+
 //handle sessions here:
 app.use(session({
   secret: "our-passport-local-strategy-app",

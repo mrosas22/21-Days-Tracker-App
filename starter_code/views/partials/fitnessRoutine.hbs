@@ -1,0 +1,19 @@
+{{!-- fitnessRoutine.hbs --}}
+<section>
+  <form action="/fitness/{{user._id}}/create" method="post" > 
+
+    <label for="">Water : 8 glasses</label>
+    <input type="Number" name="water" id="" value="{{user.plan.routine.water}}">
+
+    <label for="">Calories : 2000 cal</label>
+    <input type="Number" name="calories" id="" value="{{user.plan.routine.calories}}">
+
+    <label for="">Sleep : 8 hours/day</label>
+    <input type="Number" name="sleep" id="" value="{{user.plan.routine.sleep}}">
+
+    <label for="">Exercise : 60 minutes</label>
+    <input type="Number" name="exercise" id="" value="{{user.plan.routine.exercise}}">
+
+    <button type="submit">Save Changes</button>
+  </form>
+</section>

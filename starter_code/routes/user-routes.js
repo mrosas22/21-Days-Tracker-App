@@ -4,21 +4,13 @@ const router         = express.Router();
 const User           = require('../models/user-model');
 const Plan           = require('../models/plan-model');
 
-//Route for user's profile =====> /localhost:3000/profile
-// router.get("/profile", ensureAuthenticated, (req, res) => {
-//   res.render("user/user-profile", { user: req.user });
-// });
 
-//List all plans created by admins ======>localhost:3000/plans
+
+//List all plans and filter by member ======>localhost:3000/user/profile
 router.get('/profile', ensureAuthenticated, (req, res, next) =>{
-  User.findById(req.user._id)
+  User.findById(req.user._id).populate('plan')
     .then((user) =>{
-      const isIncluded = user.plan.includes(req.user.plan);
-      console.log('The included plan is: ', isIncluded)
-      console.log('The current user plan is: ', user.plan)
-      if(req.user.plan && isIncluded){
-        user.plan.isMember = true;
-      }
+
       res.render('user/user-profile', {user});
     })
     .catch((error) =>{

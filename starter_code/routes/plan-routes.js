@@ -51,11 +51,6 @@ router.get('/:id', ensureAuthenticated, (req, res, next) => {
         if (!plan) {
             return res.status(404).render('not-found');
         }
-        // if(req.user && plan.member){
-        //   if(plan.member.equals(req.user._id)){
-        //     plan.isMember = true;
-        //   }
-        // }
         res.render('plans/plan-details', { plan })
       })
       .catch (error => next (error))
