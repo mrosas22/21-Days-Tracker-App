@@ -39,23 +39,25 @@ router.post('/add', uploadCloud.single('imagePlan'), (req, res, next) => {
         console.log(error);
       })
 });
-
+////////////////////////////////////////////////////////////////////////////
 //Details route =====> http://localhost:3000/plans/5c748a4674aa4936ab77cbf1
 router.get('/:id', ensureAuthenticated, (req, res, next) => {
     let planId = req.params.id;
     if (!/^[0-9a-fA-F]{24}$/.test(planId)) { 
       return res.status(404).render('not-found');
     }
-    Plan.findOne({'_id': planId})
+    Plan.findById(req.params.roomId).populate('owner')
+    .populate({path:'reviews', populate:{path:'user'}})
       .then(plan => {
         if (!plan) {
             return res.status(404).render('not-found');
         }
+        console.log('receiving reviews', plan.review);
         res.render('plans/plan-details', { plan })
       })
       .catch (error => next (error))
 });
-
+////////////////////////////////////////////////////////////////////////////
 //Edit route =====> //localhost:3000/plans/5c6b88be561f7043c47ad7aa/update
 router.get('/:id/update', checkAdmin, (req, res, next) => {
     Plan.findOne({_id: req.params.id})
@@ -92,6 +94,8 @@ router.post('/:id/delete', (req, res, next) =>{
       })
       .catch(error => console.log('error while deleting the plan: ', error))
 })
+
+
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

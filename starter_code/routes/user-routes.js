@@ -10,7 +10,6 @@ const Plan           = require('../models/plan-model');
 router.get('/profile', ensureAuthenticated, (req, res, next) =>{
   User.findById(req.user._id).populate('plan')
     .then((user) =>{
-
       res.render('user/user-profile', {user});
     })
     .catch((error) =>{

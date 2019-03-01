@@ -68,5 +68,7 @@ app.use('/', require('./routes/auth-routes'));
 app.use('/user', require('./routes/user-routes'));
 app.use('/plans', require('./routes/plan-routes'));
 app.use('/fitness', require('./routes/fitness-routes'));
+app.use('/therapy', require('./routes/therapy-routes'));
+app.use('/reviews', require('./routes/review-routes'));
 
 module.exports = app;

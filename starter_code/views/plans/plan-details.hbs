@@ -1,4 +1,5 @@
 <h1>{{plan.name}}</h1>
+<h2>welcome {{userPlan}}</h2>
 {{#if plan.imagePlan}}
   <img src="{{plan.imagePlan}}" alt="Workout Motivation" width="300">
 {{else}}
@@ -9,16 +10,37 @@
 <p>{{plan.description}}</p>
 <ul>
     <li class="users-item">
-        <a href="/{{plan.name}}/one">Session One</a><br>
+        <a href="/{{plan.name}}/{{plan.id}}/one">Session One</a><br>  
+        {{!-- //"/fitness/one --}}
     </li><br>
     <li class="users-item">
-        <a href="/{{plan.name}}/two">Session Two</a><br>
+        <a href="/{{plan.name}}/{{plan.id}}/two">Session Two</a><br>
     </li><br>
     <li class="users-item">
-        <a href="/fitness/two">Session Three</a><br>
+        <a href="/{{plan.name}}/{{plan.id}}/three">Session Three</a><br>
     </li><br>
 </ul>
 
+ {{!-- ==========='/:planId/add-review'============= --}}
+<h2>Add a Review</h2>
+<form action="/reviews/{{plan._id}}/add-review" method="POST">   
+    <textarea name="comment" id="" cols="30" rows="10"></textarea>
+    <button type="submit">Add</button>
+</form>
+
+{{!-- if ther are reviews, show them, if not, forget about it @ --}}
+{{#if plan.reviews}}
+    <h3>Reviews: </h3>
+    {{#each plan.reviews}}
+    <p> <b>{{ this.user.fullname }} said: </b> {{ this.comment }} </p>
+      {{#if this.canBeChanged}}
+        <a href="/reviews/{{this._id}}">Edit</a>
+          <form action="/reviews/{{this._id}}" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+      {{/if}}
+    {{/each}}
+{{/if}}
  
 
 
