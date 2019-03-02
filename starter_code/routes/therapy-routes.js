@@ -38,7 +38,7 @@ router.post("/:userId/create", ensureAuthenticated, (req, res) =>{
         foundUser.routines.push(thenewRoutine._id);
         foundUser.save()
         .then(() => {
-          res.redirect('/therapy/one')
+          res.redirect(`/therapy/${req.params.planId}/one`);
         })
         .catch(err => console.log('Error while saving the user: ', err));
       })
