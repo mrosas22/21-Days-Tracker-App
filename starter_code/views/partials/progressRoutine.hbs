@@ -1,6 +1,6 @@
 {{!-- progressRoutine.hbs --}}
 <section>
-  <form action="/fitness/{{planId}}/create" method="post" > 
+  <form action="/{{plan.name}}/{{plan._id}}/add-routine" method="post" > 
 
     <label for="">Water : 8 glasses</label>
     <input type="Number" name="water" id="" value="{{user.plan.routine.water}}">

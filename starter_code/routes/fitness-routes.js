@@ -15,15 +15,19 @@ router.get("/:id", ensureAuthenticated, (req, res) => {
   
 })
 //localhost:3000/fitness/5c7703ead9ff79e3f02e7fb8  ++++++++++++++++++++++++
-router.get("/:planId/one", ensureAuthenticated, (req, res) => {  
-  const planId = req.params.planId;  
-  // console.log('este: ', planId);
-  res.render("routine/fitness/day1", { user: req.user, planId });   ///routine/fitness/day1
+router.get("/:id/one", ensureAuthenticated, (req, res) => {
+  Plan.findById(req.params.id).populate('reviews')
+  .populate({path:'reviews', populate: {path: 'user'}})
+  // Room.findById(req.params.id).populate({path: 'user', populate: {path: 'review'}})
+    .then(plan =>{
+      res.render("routine/fitness/day1", { user: req.user, plan });
+    })
+    .catch(error => console.log('Error while finding the plan: ', error))
 });
 
 // User update routine
 //localhost:3000/fitness/5c75b1ab33b63d96ff79050a/create
-router.post("/:planId/create", ensureAuthenticated, (req, res) =>{
+router.post("/:id/add-routine", ensureAuthenticated, (req, res) =>{
   const newRoutine = {
     water   : req.body.water,
     calories: req.body.calories,
@@ -39,7 +43,7 @@ router.post("/:planId/create", ensureAuthenticated, (req, res) =>{
         foundUser.routines.push(thenewRoutine._id);
         foundUser.save()
           .then(() => {
-            res.redirect(`/fitness/${req.params.planId}/one`);
+            res.redirect(`/fitness/${req.params.id}/one`);
             // res.redirect('/user/profile')
           })
           .catch(err => console.log('Error while saving the user: ', err));

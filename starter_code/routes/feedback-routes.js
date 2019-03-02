@@ -1,13 +1,13 @@
-const express = require('express');
-const router  = express.Router();
-const Plan    = require('../models/plan-model');
-const Review  = require('../models/review-model');
+const express  = require('express');
+const router   = express.Router();
+const Plan     = require('../models/plan-model');
+const Feedback = require('../models/feedback-model');
 
 
-
+//localhost:3000/feedback/5c7735c8865baf788436a5e8/add-review
 router.post('/:planId/add-review', (req, res, next) => {
   console.log('Review: ', req.params.planId);
-  Review.create({
+  Feedback.create({
     user        : req.user._id,
     comment     : req.body.comment,
   })
@@ -28,7 +28,7 @@ router.post('/:planId/add-review', (req, res, next) => {
 
 
 // delete review
-router.post('/reviews/:id', (req, res, next) => {
+router.post('/:id/delete', (req, res, next) => {
   Review.findByIdAndDelete(req.params.id) 
     .then(() => {
         Room.findOne({'reviews': req.params.id})

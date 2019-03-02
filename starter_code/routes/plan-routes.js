@@ -27,10 +27,10 @@ router.get("/add", checkAdmin, (req, res) => {
 });
 
 router.post('/add', uploadCloud.single('imagePlan'), (req, res, next) => {
-    const { name, description } = req.body;
+    const { name, description, events } = req.body;
     const imagePlan = req.file.secure_url;
     const owner     = req.user._id;
-    const newPlan = new Plan ({name, description, imagePlan, owner})
+    const newPlan = new Plan ({name, description, events, imagePlan, owner})
     newPlan.save()
       .then(plans => {
         res.redirect('/plans');
@@ -46,8 +46,7 @@ router.get('/:id', ensureAuthenticated, (req, res, next) => {
     if (!/^[0-9a-fA-F]{24}$/.test(planId)) { 
       return res.status(404).render('not-found');
     }
-    Plan.findById(req.params.roomId).populate('owner')
-    .populate({path:'reviews', populate:{path:'user'}})
+    Plan.findById(req.params.id)
       .then(plan => {
         if (!plan) {
             return res.status(404).render('not-found');

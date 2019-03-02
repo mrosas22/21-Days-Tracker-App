@@ -4,8 +4,9 @@ const router         = express.Router();
 const User           = require('../models/user-model');
 const Plan           = require('../models/plan-model');
 const Routine        = require('../models/routine-model');
+const Feedback       = require('../models/feedback-model');
 
-//
+
 router.get("/:id", ensureAuthenticated, (req, res) => {
   Plan.findById(req.params.id)
     .then(plan =>{
@@ -16,13 +17,21 @@ router.get("/:id", ensureAuthenticated, (req, res) => {
 })
 
 // //localhost:3000/therapy/one
-router.get("/:planId/one", ensureAuthenticated, (req, res) => {
-  res.render("routine/therapy/dayt1", { user: req.user });
+router.get("/:id/one", ensureAuthenticated, (req, res) => {
+  Plan.findById(req.params.id).populate('reviews')
+  .populate({path:'reviews', populate: {path: 'user'}})
+  // Room.findById(req.params.id).populate({path: 'user', populate: {path: 'review'}})
+    .then(plan =>{
+      console.log('Please show me the reviews: ', plan.reviews)
+      console.log('Please show me the name of the user: ', plan.reviews[0].user.fullName)
+      res.render("routine/therapy/day1", { user: req.user, plan });
+    })
+    .catch(error => console.log('Error while finding the plan: ', error))
 });
 
 // // User update routine
 // //localhost:3000/therapy/5c75b1ab33b63d96ff79050a/create
-router.post("/:userId/create", ensureAuthenticated, (req, res) =>{
+router.post("/:id/add-routine", ensureAuthenticated, (req, res) =>{
   const newRoutine = {
     water   : req.body.water,
     calories: req.body.calories,
@@ -33,12 +42,12 @@ router.post("/:userId/create", ensureAuthenticated, (req, res) =>{
   // console.log(' we are to see: ', req.body );
   Routine.create(newRoutine)
     .then(thenewRoutine =>{
-      User.findById(req.params.userId)
+      User.findById(req.user._id)
       .then(foundUser =>{
         foundUser.routines.push(thenewRoutine._id);
         foundUser.save()
         .then(() => {
-          res.redirect(`/therapy/${req.params.planId}/one`);
+          res.redirect(`/therapy/${req.params.id}/one`);
         })
         .catch(err => console.log('Error while saving the user: ', err));
       })

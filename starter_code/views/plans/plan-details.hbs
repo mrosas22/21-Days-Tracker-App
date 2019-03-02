@@ -1,5 +1,4 @@
 <h1>{{plan.name}}</h1>
-<h2>welcome {{userPlan}}</h2>
 {{#if plan.imagePlan}}
   <img src="{{plan.imagePlan}}" alt="Workout Motivation" width="300">
 {{else}}
@@ -8,8 +7,6 @@
 <br>
 <h4>Description: </h4>
 <p>{{plan.description}}</p>
-<h4>Events: </h4>
-<p>{{plan.events}}</p>
 <ul>
     <li class="users-item">
         <a href="/{{plan.name}}/{{plan.id}}/one">Session One</a><br>  
@@ -24,13 +21,13 @@
 </ul>
 
  {{!-- ==========='/:planId/add-review'============= --}}
-<h2>Add a Review</h2>
+{{!-- <h2>Add a Review</h2>
 <form action="/reviews/{{plan._id}}/add-review" method="POST">   
     <textarea name="comment" id="" cols="30" rows="10"></textarea>
     <button type="submit">Add</button>
 </form>
 
-{{!-- if ther are reviews, show them, if not, forget about it @ --}}
+
 {{#if plan.reviews}}
     <h3>Reviews: </h3>
     {{#each plan.reviews}}
@@ -42,7 +39,7 @@
           </form>
       {{/if}}
     {{/each}}
-{{/if}}
+{{/if}} --}}
  
 
 

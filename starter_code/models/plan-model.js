@@ -6,7 +6,7 @@ const planSchema = new Schema({
     events      : { type: Number},
     description : { type: String },
     imagePlan   : { type: String },
-    reviews     : [{ type: Schema.Types.ObjectId, ref: "Review" }]
+    reviews     :[{ type: Schema.Types.ObjectId, ref: "Feedback" }]
     
 }, {
     timestamps: true
